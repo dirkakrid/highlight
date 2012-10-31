@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <title>Highlight your Python code</title>
+<link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style type="text/css">
+.asap{font-family: 'Asap', sans-serif;}
 .defname {color: blue;}
 .definition {color: darkorange; font-weight:bold;}
 .keyword {color: darkorange;}
@@ -17,33 +19,40 @@
 </style>
 </head>
 <body leftmargin="40">
-
+<font face="asap">
 <h3>Paste your code here:</h3>
+<div class="description">
+<p>
+The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE. <br>
+</p>
+<div>
+<div class="form">
 <form action="" method=post>
 	<small>							
 	<textarea name="code" cols="80" rows="20">print 'Hello world!'
 	</textarea>
 	<br>
 	<input type="checkbox" name="pptx" value="fix">PowerPoint Fix
-	<input type="submit" value="Highlight"/>
+	<input type="submit" value="Highlight" style="font-family: 'Asap', sans-serif;"/>
 	</small>
 </form>
-
+</div>
 <br><br>
 
-<div>
+<div class="colophon">
 	<span style="font-size: 12px;">
 	Powered by <a href="http://python.org/" target="_blank">Python</a> and <a href="http://flask.pocoo.org/" target="_blank">Flask</a>.<br>
 	Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">heroku</a>. <br>
 	Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
 	The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
 	The web app was developed in less than 100 mins by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>. <br>
+	The <em>Asap</em> font is part of the <a href="http://www.google.com/webfonts" target="_blank">Google Web Fonts<a>. <br>
 	<a href="http://flask.pocoo.org/" target="_blank">Flask</a> is that easy, and is easy to depoly with  <a href="https://devcenter.heroku.com/articles/python" target="_blank">heroku</a>. <br>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
 	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
 	</a>
 	</span>
 <div>
-
+</font>
 </body>
 </html>
