@@ -16,29 +16,34 @@
 .docstring {color: forestgreen; font-style:italic;}
 </style>
 </head>
-<body>
+<body leftmargin="40">
 
-<h3>Insert your code here:</h3>
+<h3>Paste your code here:</h3>
 <form action="" method=post>
-						
-	<textarea name="code" cols="40" rows="10">print 'Hello world!'
+	<small>							
+	<textarea name="code" cols="80" rows="20">print 'Hello world!'
 	</textarea>
 	<br>
+	<input type="checkbox" name="pptx" value="fix">PowerPoint Fix
 	<input type="submit" value="Highlight"/>
-
+	</small>
 </form>
 
-<div><p>
-	<small>
-	The highlighting is done using Python. <br>
-	The highlighter code is by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
-	The server was written in less than 30 mins using <a href="http://flask.pocoo.org/" target="_blank">Flask</a>. <br>
-	The code can be found on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
+<br><br>
+
+<div>
+	<span style="font-size: 12px;">
+	Powered by <a href="http://python.org/" target="_blank">Python</a> and <a href="http://flask.pocoo.org/" target="_blank">Flask</a>.<br>
+	Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">heroku</a>. <br>
+	Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
+	The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
+	The web app was developed in less than 100 mins by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>. <br>
+	<a href="http://flask.pocoo.org/" target="_blank">Flask</a> is that easy, and is easy to depoly with  <a href="https://devcenter.heroku.com/articles/python" target="_blank">heroku</a>. <br>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
 	<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
 	</a>
-	</small>
-</p><div>
+	</span>
+<div>
 
 </body>
 </html>
