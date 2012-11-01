@@ -3,10 +3,12 @@ from flask import Flask, request, render_template
 import os
 
 DEBUG = True
+# add environment variables using 'heroku config:add VARIABLE_NAME=variable_name'
+GOOGLE_ANALYTICS = os.environ('GOOGLE_ANALYTICS')
 
 app = Flask(__name__)
-app.config.from_object(__name__)  # load UPPERCASE configuration
-app.config.from_pyfile('config.py', True)  # override configuration with file config.py, if exists
+app.config.from_object(__name__)  
+app.config.from_pyfile('config.py', True)
 if app.debug:
 	print " * Running in debug mode"
 
