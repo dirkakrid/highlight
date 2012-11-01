@@ -2,8 +2,8 @@ import highlight
 from flask import Flask, request, render_template
 import os
 
-DEBUG = True
 # add environment variables using 'heroku config:add VARIABLE_NAME=variable_name'
+DEBUG = bool(os.environ('GOOGLE_ANALYTICS', True))
 GOOGLE_ANALYTICS = os.environ('GOOGLE_ANALYTICS')
 
 app = Flask(__name__)
