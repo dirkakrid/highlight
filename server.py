@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 import os
 
 # add environment variables using 'heroku config:add VARIABLE_NAME=variable_name'
-DEBUG = boolean(os.environ('DEBUG', True))
+DEBUG = os.environ('DEBUG', 'True') == 'True'
 GOOGLE_ANALYTICS = os.environ('GOOGLE_ANALYTICS')
 
 app = Flask(__name__)
