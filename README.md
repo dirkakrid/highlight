@@ -1,29 +1,50 @@
 # highlight
 
-## A simple web app that highlights Python code
+## A simple Python web app that highlights Python code
 
-I've found a [script](http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/) that 
-colors python code in the same way that IDLE does.
+The app highlights Python source code with the same color scheme as *IDLE*, the default Python IDE. The purpose of this project was three-fold:
 
-The script is named *highlight.py* and is part of this repository.
-You run it like this:
+  1. Display code in educational presentations with the same coloring scheme used by the IDE begginers normally use.
+  1. Showcase the quick development (<30 mins) of a [Flask] web app.
+  1. Learn how to deploy web apps to [Heroku]. Turns out it's *easier* then I thought.
 
-	>> python highlight.py -b code.py
+## Use online
 
-It will open up a browser window with a highlighted version of the code from *code.py*.
-The highlighting is the same as in IDLE, and you can copy paste it to *PowerPoint*, *Word*, etc..
-In *PowerPoint* you might need to click the small clipboard icon after pasting and choose *Keep source formatting*.
-Also, some of the newlines get lost.
+The app runs at [highlight.yoavram.com](http://highlight.yoavram.com/) and can be freely used by anyone.
 
-If you want to do it all in the browser, you can clone [this repo](http://github.com/yoavram/highlight/), 
+## Use on localhost
+
+If you want to, you can clone [this repo](http://github.com/yoavram/highlight/), 
 install [Flask](http://flask.pocoo.org/), and run 
 
 	>> python server.py
 
-and then open [localhost:5000](http://localhost:5000) in your browser. 
-In your browser window you'll be able to paste code and click *Highlight*, at which point you'll get a highlighted version of your code.
+Then open [localhost:5000](http://localhost:5000) in your browser, and you'll be able to paste code and click *Highlight*, at which point you'll get a highlighted version of your code.
 
-## License
+## Run from command line
 
-CC BY-SA 3.0
+The script is named [highlight.py](https://raw.github.com/yoavram/highlight/master/highlight.py) and is part of this repository.
+You can run it from the command line:
 
+	>> python highlight.py -b code.py
+
+It will open up a browser window with a highlighted version of the code from *code.py*.
+It can also output *LaTeX* and *PDF* (via *pdflatex*).
+
+## Use with PowerPoint
+
+I've added a *PowerPoint fix* - if you want to paste to *PowerPoint*, you need to check the checkbox before clicking *Highlight*, then copy the code, and when you paste it in *PowerPoint* click the small clipboard icon after pasting and choose *Keep source formatting*. The fix is neccesarry to avoid losing new lines and indentation.
+
+## Credits and License
+
+The app is written in [Python], uses the wonderful [Flask] web microframework and is deployed on [Heroku].
+
+The highlighting is done using a [script](http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/) by *Raymond Hettinger* I found online. The highlighter itself is licensed under the [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+The web app was developed by Yoav Ram and is licensed under [Creative Commons Attribution-ShareAlike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).
+
+[![CC BY-SA 3.0](http://i.creativecommons.org/l/by-sa/3.0/80x15.png)](http://creativecommons.org/licenses/by-sa/3.0/)
+
+[Python]: http://python.org/
+[Flask]: http://flask.pocoo.org/
+[Heroku]: http://www.heroku.com/
