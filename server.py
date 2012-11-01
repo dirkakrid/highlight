@@ -2,7 +2,13 @@ import highlight
 from flask import Flask, request, render_template
 import os
 
+DEBUG = True
+
 app = Flask(__name__)
+app.config.from_object(__name__)  # load UPPERCASE configuration
+app.config.from_pyfile('config.py', True)  # override configuration with file config.py, if exists
+if app.debug:
+	print " * Running in debug mode"
 
 
 def code_to_html(code):
@@ -11,15 +17,15 @@ def code_to_html(code):
 	return html
 
 
-def powerpoint_fix(html, start_pre = '<pre class="python">', stop_pre = '</pre>'):
+def powerpoint_fix(html, start_pre='<pre class="python">', stop_pre='</pre>'):
 	start = html.find(start_pre) + len(start_pre)
 	stop = html.find(stop_pre, start)
 	code = html[start:stop]
-	code = code.replace("\n","<br>")
-	code = code.replace("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
-	code = code.replace("    ","&nbsp;&nbsp;&nbsp;&nbsp;")
+	code = code.replace("\n", "<br>")
+	code = code.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;")
+	code = code.replace("    ", "&nbsp;&nbsp;&nbsp;&nbsp;")
 	return html[:start] + code + html[stop:]
-        
+
 
 @app.route("/",  methods=['GET', 'POST'])
 def index():
@@ -34,6 +40,6 @@ def index():
 
 
 if __name__ == '__main__':
-    # Bind to PORT if defined, otherwise default to 5000.
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+	# Bind to PORT if defined, otherwise default to 5000.
+	port = int(os.environ.get('PORT', 5000))
+	app.run(host='0.0.0.0', port=port, debug=True)
