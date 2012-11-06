@@ -8,6 +8,7 @@
 <meta name="keywords" content="color, syntax, highlight, python, highlighter, code, source code, IDLE, word, powerpoint">
 <meta name="description" content="Color your Python code like IDLE does.">
 <title>Highlight your Python code</title>
+<script type="text/javascript" src="/static/jquery-1.7.2.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <style type="text/css">
 .asap{font-family: 'Asap', sans-serif;}
@@ -29,8 +30,7 @@
 The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE. <br>
 </p>
 <div>
-<div class="form">
-<form action="" method=post>
+<form action="/" id="codeForm">
 	<small>							
 	<textarea name="code" cols="70" rows="20">print 'Hello world!'
 	</textarea>
@@ -39,12 +39,43 @@ The code will be highlighted with the color scheme of <em>IDLE</em>, the default
 	<input type="submit" value="Highlight" style="font-family: 'Asap', sans-serif;"/>
 	</small>
 </form>
+<br><br>
+
+<div id="result">
+<!-- highlighted code will be shown here -->
 </div>
+
+<script>
+	/* http://api.jquery.com/jQuery.post/ */
+  /* attach a submit handler to the form */
+  $("#codeForm").submit(function(event) {
+
+    /* stop form submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        code_term = $form.find( 'textarea[name="code"]' ).val(),
+        pptx_term = $form.find( 'input[name="pptx"]' ).is(':checked'),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post( url, { code: code_term, pptx: pptx_term },
+      function( data ) {
+          $( "#result" ).empty().append( data );
+      }
+    );
+  });
+  $(document).ready(function() {
+	$("#codeForm").submit();
+  });
+</script>
+
 <br><br>
 
 <div class="colophon">
 	<span style="font-size: 12px;">
-	Powered by <a href="http://python.org/" target="_blank">Python</a> and <a href="http://flask.pocoo.org/" target="_blank">Flask</a>.<br>
+	Powered by <a href="http://python.org/" target="_blank">Python</a>, <a href="http://flask.pocoo.org/" target="_blank">Flask</a> and <a href="http://jquery.com/" target="_blank">jQuery</a>.<br>
 	Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">Heroku</a>. <br>
 	Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
 	The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>

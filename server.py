@@ -15,7 +15,8 @@ if app.debug:
 
 def code_to_html(code):
 	classified_text = highlight.analyze_python(code)
-	html = highlight.build_html_page(classified_text, title="Highlight your code")
+	html = highlight.html_highlight(classified_text)
+	#html = highlight.build_html_page(classified_text, title="Highlight your code")
 	return html
 
 
@@ -34,9 +35,8 @@ def index():
 	if request.method == 'GET':
 		return render_template("index.html")
 	else:
-		code = request.form['code']
-		html = code_to_html(code)
-		if 'pptx' in request.form:
+		html = code_to_html(request.form['code'])
+		if request.form['pptx']:
 			html = powerpoint_fix(html)
 		return html
 
@@ -44,4 +44,4 @@ def index():
 if __name__ == '__main__':
 	# Bind to PORT if defined, otherwise default to 5000.
 	port = int(os.environ.get('PORT', 5000))
-	app.run(host='0.0.0.0', port=port, debug=True)
+	app.run(host='0.0.0.0', port=port, debug=app.debug)
