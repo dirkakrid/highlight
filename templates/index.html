@@ -10,100 +10,97 @@
 	<title>Highlight your Python code</title>
 	<script type="text/javascript" src="/static/jquery-1.7.2.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Asap:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-	<style type="text/css">
-	.asap{font-family: 'Asap', sans-serif;}
-	.defname {color: blue;}
-	.definition {color: darkorange; font-weight:bold;}
-	.keyword {color: darkorange;}
-	.comment {color: crimson;}
-	.string {color: forestgreen;}
-	.builtin {color: purple;}
-	.operator {color: brown;}
-	.docstring {color: forestgreen; font-style:italic;}
-	</style>
+	<link href='/static/style.css' rel='stylesheet' type='text/css'>
 </head>
-<body leftmargin="40">
-	<font face="asap">
-		<h3>Paste your Python code here:</h3>
-		<div class="description">
-			<p>
-				The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE. <br>
-			</p>
-			<div>
-				<table>
-					<row><td>
-				<form action="/" id="codeForm">
-					<small>							
-						<textarea name="code" cols="70" rows="20" style="padding-left: 5px; padding-top: 14px;">print 'Hello world!'
-						</textarea>
-						<br>
-						<input type="checkbox" name="pptx" value="fix">PowerPoint Fix
-						<input type="submit" value="Highlight" style="font-family: 'Asap', sans-serif;"/>
-					</small>
-				</form>
-</td><td valign="top">
-				<div id="result" style="">
-					<!-- highlighted code will be shown here -->
-				</div>
-</td></tr></table>
-				<script>
-				/* http://api.jquery.com/jQuery.post/ */
-				/* attach a submit handler to the form */
-				$("#codeForm").submit(function(event) {
+<body>
+	
+	<h3>Paste your Python code here</h3>
+	<div class="description">
+		<p>
+			The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE. <br>
+		</p>
+	</div>
+	<div class="codeDiv">
+		<form action="/" id="codeForm">										
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<textarea class="blackbox" name="code" cols="67" rows="15">print 'Hello world!'
+							</textarea>
+						</td>
+						<td>
+							<div id="result">
+								<!-- highlighted code will be shown here -->
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td align="right">
+							<input type="checkbox" name="pptx" value="fix"><small>PowerPoint Fix</small>
+							<input type="submit" value="Highlight"/>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
 
-					/* stop form submitting normally */
-					event.preventDefault(); 
-					
-					/* get some values from elements on the page: */
-					var $form = $( this ),
-					code_term = $form.find( 'textarea[name="code"]' ).val(),
-					pptx_term = $form.find( 'input[name="pptx"]' ).is(':checked'),
-					url = $form.attr( 'action' );
+	<br><br>
 
-					/* Send the data using post and put the results in a div */
-					$.post( url, { code: code_term, pptx: pptx_term },
-						function( data ) {
-							$( "#result" ).empty().append( data );
-						}
-						);
-				});
-				$(document).ready(function() {
-					$("#codeForm").submit();
-				});
-				</script>
+	<div class="colophon">
+			Powered by <a href="http://python.org/" target="_blank">Python</a>, <a href="http://flask.pocoo.org/" target="_blank">Flask</a> and <a href="http://jquery.com/" target="_blank">jQuery</a>.<br>
+			Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">Heroku</a>. <br>
+			Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
+			The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
+			The web app was developed by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>. <br>
+			The <em>Asap</em> font is part of the <a href="http://www.google.com/webfonts" target="_blank">Google Web Fonts<a>. <br>
+			<a href="http://flask.pocoo.org/" target="_blank">Flask</a> apps are easy to deploy with  <a href="https://devcenter.heroku.com/articles/python" target="_blank">Heroku</a>. <br>
+			<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+				<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
+			</a> <br>
+	</div>
 
-				<br><br>
+	{% if config.GOOGLE_ANALYTICS %}
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '{{ config.GOOGLE_ANALYTICS }}']);
+	_gaq.push(['_trackPageview']);
 
-				<div class="colophon">
-					<span style="font-size: 12px;">
-						Powered by <a href="http://python.org/" target="_blank">Python</a>, <a href="http://flask.pocoo.org/" target="_blank">Flask</a> and <a href="http://jquery.com/" target="_blank">jQuery</a>.<br>
-						Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">Heroku</a>. <br>
-						Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
-						The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
-						The web app was developed by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>. <br>
-						The <em>Asap</em> font is part of the <a href="http://www.google.com/webfonts" target="_blank">Google Web Fonts<a>. <br>
-						<a href="http://flask.pocoo.org/" target="_blank">Flask</a> apps are easy to deploy with  <a href="https://devcenter.heroku.com/articles/python" target="_blank">Heroku</a>. <br>
-						<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-							<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
-						</a> <br>
-					</span>
-					<div>
-					</font>
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
-					{% if config.GOOGLE_ANALYTICS %}
-					<script type="text/javascript">
-					var _gaq = _gaq || [];
-					_gaq.push(['_setAccount', '{{ config.GOOGLE_ANALYTICS }}']);
-					_gaq.push(['_trackPageview']);
+	</script>
+	{% endif %}
+	<script type="text/javascript">
+	/* http://api.jquery.com/jQuery.post/ */
+	/* attach a submit handler to the form */
+	$("#codeForm").submit(function(event) {
 
-					(function() {
-						var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-						ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-					})();
+		/* stop form submitting normally */
+		event.preventDefault(); 
 
-					</script>
-					{% endif %}
+		/* get some values from elements on the page: */
+		var $form = $( this ),
+		code_term = $form.find( 'textarea[name="code"]' ).val(),
+		pptx_term = $form.find( 'input[name="pptx"]' ).is(':checked'),
+		url = $form.attr( 'action' );
 
-				</body>
-				</html>
+		/* Send the data using post and put the results in a div */
+		$.post( url, { code: code_term, pptx: pptx_term },
+			function( data ) {
+				$( "#result" ).empty().append( data );
+			}
+			);
+	});
+	$(document).ready(function() {
+		$("#codeForm").submit();
+	});
+	</script>
+</body>
+</html>
