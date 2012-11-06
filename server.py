@@ -16,7 +16,6 @@ if app.debug:
 def code_to_html(code):
 	classified_text = highlight.analyze_python(code)
 	html = highlight.html_highlight(classified_text)
-	#html = highlight.build_html_page(classified_text, title="Highlight your code")
 	return html
 
 
@@ -36,7 +35,7 @@ def index():
 		return render_template("index.html")
 	else:
 		html = code_to_html(request.form['code'])
-		if request.form['pptx']:
+		if request.form['pptx'] == "true":
 			html = powerpoint_fix(html)
 		return html
 
