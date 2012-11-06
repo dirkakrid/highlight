@@ -44,17 +44,9 @@ The code will be highlighted with the color scheme of <em>IDLE</em>, the default
 <div id="result">
 <!-- highlighted code will be shown here -->
 </div>
-<div id="d_clip_container" style="position:relative">
-   <div id="d_clip_button">Copy to Clipboard</div>
-</div>
 
 <script>
-// https://github.com/jonrohan/ZeroClipboard/blob/master/docs/instructions.md 
-	ZeroClipboard.setMoviePath( '/static/ZeroClipboard.swf' );
-	 var clip = new ZeroClipboard.Client();
-	 
-	 clip.glue( 'd_clip_button', 'd_clip_container' );
-	/* http://api.jquery.com/jQuery.post/ */
+  /* http://api.jquery.com/jQuery.post/ */
   /* attach a submit handler to the form */
   $("#codeForm").submit(function(event) {
 
@@ -71,7 +63,6 @@ The code will be highlighted with the color scheme of <em>IDLE</em>, the default
     $.post( url, { code: code_term, pptx: pptx_term },
       function( data ) {
           $( "#result" ).empty().append( data );
-          clip.setText( $( "#result" ).text() );
       }
     );
   });
