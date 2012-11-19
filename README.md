@@ -34,7 +34,7 @@ It can also output *LaTeX* and *PDF* (via *pdflatex*).
 
 ## Use with PowerPoint
 
-I've added a *PowerPoint fix* - if you want to paste to *PowerPoint*, you need to check the checkbox before clicking *Highlight*, then copy the code, and when you paste it in *PowerPoint* click the small clipboard icon after pasting and choose *Keep source formatting*. The fix is neccesarry to avoid losing new lines and indentation - it replaces newlines with <code>&lt;br></code> elements and tabs with HTML space elements.
+I've added a *PowerPoint fix* - if you want to paste to *PowerPoint*, you need to check the checkbox before clicking *Highlight*, then copy the code, and when you paste it in *PowerPoint* click the small clipboard icon after pasting and choose *Keep source formatting*. The fix is neccesarry to avoid losing new lines and indentation - it replaces newlines with `&lt;br>` elements and tabs with HTML space elements.
 
 ## Credits and License
 
