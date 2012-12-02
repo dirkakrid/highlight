@@ -13,11 +13,11 @@
 	<link href='/static/style.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	
 	<h3>Paste your Python code here</h3>
 	<div class="description">
 		<p>
-			The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE. <br>
+			The code will be highlighted with the color scheme of <em>IDLE</em>, the default Python IDE.
+			<br>
 		</p>
 	</div>
 	<div class="codeDiv">
@@ -36,11 +36,24 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="right">
-							<input type="checkbox" name="pptx" value="fix"><small>PowerPoint Fix</small>
-							<input type="submit" value="Highlight"/>
-						</td>
 						<td>
+							<table width="100%"><tr>
+								<td align="left">
+									<div id="pptx_div">
+										<small>
+											In 
+											<img src="/static/Microsoft_PowerPoint_Icon.png" title="PowerPoint" alt="PowerPoint" height="20" width="20" valign="middle"/>
+											paste with 
+											<img src="/static/keep_source_formatting.png" valign="middle" height="20" width="20" title="Keep Source Formatting" alt="Keep Source Formatting">
+										</small>
+									</div>
+								</td>
+								<td align="right">							
+									<input type="checkbox" name="pptx" value="fix" id="pptx_cb">
+									<small>PowerPoint Fix</small>
+									<input type="submit" value="Highlight"/>
+								</td>
+							</tr></table>
 						</td>
 					</tr>
 				</tbody>
@@ -51,56 +64,75 @@
 	<br><br>
 
 	<div class="colophon">
-			Powered by <a href="http://python.org/" target="_blank">Python</a>, <a href="http://flask.pocoo.org/" target="_blank">Flask</a> and <a href="http://jquery.com/" target="_blank">jQuery</a>.<br>
-			Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">Heroku</a>. <br>
-			Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>. <br>
-			The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>. <br>
-			The web app was developed by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>. <br>
-			The <em>Asap</em> font is part of the <a href="http://www.google.com/webfonts" target="_blank">Google Web Fonts<a>. <br>
-			<a href="http://flask.pocoo.org/" target="_blank">Flask</a> apps are easy to deploy with  <a href="https://devcenter.heroku.com/articles/python" target="_blank">Heroku</a>. <br>
-			<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
-				<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" />
-			</a> <br>
-	</div>
+		Powered by <a href="http://python.org/" target="_blank">Python</a>, <a href="http://flask.pocoo.org/" target="_blank">Flask</a> and <a href="http://jquery.com/" target="_blank">jQuery</a>.<br>
+		Web app hosted by for <em>free</em> by <a href="http://heroku.com/" target="_blank">Heroku</a>. <br>
+		Code <em>freely</em> availabe on <a href="http://github.com/yoavram/highlight/" target="_blank">github</a>.
+		<br>
+		The highlighter was developed by <a href="http://code.activestate.com/recipes/578178-colorize-python-sourcecode-syntax-highlighting/" target="_blank">Raymond Hettinger</a>.
+		<br>
+		The web app was developed by <a href="http://www.yoavram.com/" target="_blank">Yoav Ram</a>.
+		<br>
+		The <em>Asap</em> font is part of the <a href="http://www.google.com/webfonts" target="_blank">Google Web Fonts<a>.
+		<br>
+		<a href="http://flask.pocoo.org/" target="_blank">Flask</a> apps are easy to deploy with <a href="https://devcenter.heroku.com/articles/python" target="_blank">Heroku</a>.
+		<br>
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+			<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a>
+		<br>
+		</div>
 
-	{% if config.GOOGLE_ANALYTICS %}
-	<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', '{{ config.GOOGLE_ANALYTICS }}']);
-	_gaq.push(['_trackPageview']);
+		{% if config.GOOGLE_ANALYTICS %}
+		<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', '{{ config.GOOGLE_ANALYTICS }}']);
+		_gaq.push(['_trackPageview']);
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
 
-	</script>
-	{% endif %}
-	<script type="text/javascript">
-	/* http://api.jquery.com/jQuery.post/ */
-	/* attach a submit handler to the form */
-	$("#codeForm").submit(function(event) {
+		</script>
+		{% endif %}
 
-		/* stop form submitting normally */
-		event.preventDefault(); 
+		<!-- this is the jquery stuff -->
+		<script type="text/javascript">
+		/* http://api.jquery.com/jQuery.post/ */
+		/* attach a submit handler to the form */
+		$("#codeForm").submit(function(event) {
 
-		/* get some values from elements on the page: */
-		var $form = $( this ),
-		code_term = $form.find( 'textarea[name="code"]' ).val(),
-		pptx_term = $form.find( 'input[name="pptx"]' ).is(':checked'),
-		url = $form.attr( 'action' );
+			/* stop form submitting normally */
+			event.preventDefault(); 
 
-		/* Send the data using post and put the results in a div */
-		$.post( url, { code: code_term, pptx: pptx_term },
-			function( data ) {
-				$( "#result" ).empty().append( data );
-			}
-			);
-	});
-	$(document).ready(function() {
-		$("#codeForm").submit();
-	});
-	</script>
-</body>
+			/* get some values from elements on the page: */
+			var $form = $( this ),
+			code_term = $form.find( 'textarea[name="code"]' ).val(),
+			pptx_term = $form.find( 'input[name="pptx"]' ).is(':checked'),
+			url = $form.attr( 'action' );
+
+			/* Send the data using post and put the results in a div */
+			$.post( url, { code: code_term, pptx: pptx_term },
+				function( data ) {
+					$( "#result" ).empty().append( data );
+				}
+				);
+		});
+		$(document).ready(function() {
+			$("#codeForm").submit();
+			$("#pptx_div").hide();
+			$("#pptx_cb").click(function(){
+				$("#pptx_div").show();
+			})
+			$("#pptx_cb").click(function(){
+				if ($("#pptx_cb").is(":checked")) {
+					$("#pptx_div").show();
+				} else {
+					$("#pptx_div").hide();
+				}	
+			})
+		});
+
+		</script>
+	</body>
 </html>
