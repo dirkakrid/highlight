@@ -44,7 +44,7 @@ The highlighting is done using a [script](http://code.activestate.com/recipes/57
 
 The web app was developed by [Yoav Ram] and is licensed under [Creative Commons Attribution-ShareAlike 3.0](http://creativecommons.org/licenses/by-sa/3.0/).
 
-[![CC BY-SA 3.0](http://i.creativecommons.org/l/by-sa/3.0/80x15.png)](http://creativecommons.org/licenses/by-sa/3.0/)
+[![CC BY-NC-SA 3.0](http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png)](http://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 [Python]: http://python.org/
 [Flask]: http://flask.pocoo.org/
